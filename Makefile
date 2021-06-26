@@ -11,7 +11,8 @@ app-init:
 		php -d memory_limit=-1 /usr/bin/composer install && \
 		composer install && \
 		php artisan storage:link && \
-		php artisan key:generate'
+		php artisan key:generate && \
+		php artisan jwt:secret'
 
 # Laravelのキャッシュ周りを削除する際に実行する
 app-clear:
