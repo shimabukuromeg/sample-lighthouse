@@ -30,19 +30,6 @@ services:
     ports:
       - ${MAILHOG_SMTP_PORT:-1025}:1025
       - ${MAILHOG_HTTP_PORT:-8025}:8025
-  doc-api:
-    image: swaggerapi/swagger-ui:v3.31.1
-    ports:
-      - ${DOC_API_PORT:-8080}:8080
-    volumes:
-      - ./document:/oas
-    environment:
-      SWAGGER_JSON: /oas/openapi.yaml
-  doc-db:
-    build: ./docker/local/tbls
-    volumes:
-      - ./document:/work:delegated
-    command: doc --force mysql://root:${DB_ROOT_PASSWORD:-root}@db:3306/${DB_DATABASE:-laravel}
 
 volumes:
   app-vendor-volume:

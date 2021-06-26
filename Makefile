@@ -1,18 +1,17 @@
 up:
-	docker-compose up -d app web db doc-api mailhog
+	docker-compose up -d app web db mailhog
 
 down:
 	docker-compose down
 
-# dockerコンテナを初めて起動した場合に実行する
+# Init application after start docker
 app-init:
 	docker-compose exec app ash -c ' \
 		chmod -R 777 /app/storage && \
 		php -d memory_limit=-1 /usr/bin/composer install && \
 		composer install && \
 		php artisan storage:link && \
-		php artisan key:generate && \
-		php artisan jwt:secret'
+		php artisan key:generate'
 
 # Laravelのキャッシュ周りを削除する際に実行する
 app-clear:
@@ -68,9 +67,3 @@ app-db-fresh-seed:
 	docker-compose exec app ash -c ' \
 		php artisan migrate:fresh --seed && \
 		php artisan migrate:fresh --env=testing'
-
-# DBのドキュメントを更新する
-doc-db-update:
-	docker-compose exec app ash -c 'php artisan migrate:fresh'
-	rm -rf ./document/dbdoc/*
-	docker-compose up doc-db
