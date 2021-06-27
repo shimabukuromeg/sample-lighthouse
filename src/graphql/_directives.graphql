@@ -114,3 +114,11 @@ directive @guard(
     """
     with: [String!]
 ) on FIELD_DEFINITION | OBJECT
+
+directive @auth(
+    """
+    Specify which guard to use, e.g. "api".
+    When not defined, the default from `lighthouse.php` is used.
+    """
+    guard: String
+) on FIELD_DEFINITION
