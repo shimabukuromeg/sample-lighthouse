@@ -15,7 +15,7 @@
 <br />
 
 <button>
-    <a href="{{ $base_url . "/forgot-password/reset?" . $token }}">
+    <a href="{{ $base_url . "/forgot-password/reset?token" . $token }}">
         確認する
     </a>
 </button>
@@ -25,8 +25,8 @@
 
 URL
 <br />
-<a href="{{ $base_url . "/forgot-password/reset?" . $token }}">
-    {{ $base_url . "/forgot-password/reset?" . $token }}
+<a href="{{ $base_url . "/forgot-password/reset?token" . $token }}">
+    {{ $base_url . "/forgot-password/reset?token" . $token }}
 </a>
 <br />
 <br />
