@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-use Wimil\LighthouseGraphqlJwtAuth\MustVerifyEmailGraphQL;
 use App\Notifications\VerifyEmailNotification;
 
 class User extends Authenticatable implements JWTSubject, MustVerifyEmail
@@ -74,5 +73,13 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     public function sendEmailVerificationNotification()
     {
         $this->notify(new VerifyEmailNotification($this));
+    }
+
+    /**
+     * @see CanResetPassword::sendPasswordResetNotification
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new PasswordResetNotification($token, $this));
     }
 }
