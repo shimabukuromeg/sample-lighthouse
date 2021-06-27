@@ -1,0 +1,116 @@
+# Scalar directives
+directive @scalar(class: String!) on SCALAR
+
+# ENUM directives
+directive @enum(value: ID!) on ENUM_VALUE
+
+# Union directives
+directive @union(resolver: String!) on UNION
+
+# Interface directives
+directive @interface(resolver: String!) on INTERFACE
+
+# Object directives
+directive @group(middleware: [String!]!) on OBJECT
+directive @security(depth: Int!, complexity: Int!) on OBJECT
+
+# Field directives
+directive @field(resolver: String!) on FIELD_DEFINITION
+directive @rename(attribute: String!) on FIELD_DEFINITION
+directive @find(
+    """
+    Specify the class name of the model to use.
+    This is only needed when the default model detection does not work.
+    """
+    model: String
+
+    """
+    Apply scopes to the underlying query.
+    """
+    scopes: [String!]
+) on FIELD_DEFINITION
+directive @paginate(
+    """
+    Which pagination style should be used.
+    """
+    type: PaginateType = PAGINATOR
+
+    """
+    Specify the class name of the model to use.
+    This is only needed when the default model detection does not work.
+    """
+    model: String
+
+    """
+    Point to a function that provides a Query Builder instance.
+    This replaces the use of a model.
+    """
+    builder: String
+
+    """
+    Apply scopes to the underlying query.
+    """
+    scopes: [String!]
+
+    """
+    Allow clients to query paginated lists without specifying the amount of items.
+    Overrules the `pagination.default_count` setting from `lighthouse.php`.
+    """
+    defaultCount: Int
+
+    """
+    Limit the maximum amount of items that clients can request from paginated lists.
+    Overrules the `pagination.max_count` setting from `lighthouse.php`.
+    """
+    maxCount: Int
+) on FIELD_DEFINITION
+enum PaginateType {
+    """
+    Offset-based pagination, similar to the Laravel default.
+    """
+    PAGINATOR
+
+    """
+    Offset-based pagination like the Laravel "Simple Pagination", which does not count the total number of records.
+    """
+    SIMPLE
+
+    """
+    Cursor-based pagination, compatible with the Relay specification.
+    """
+    CONNECTION
+}
+directive @all(relation: String, model: String, scopes: [String]) on FIELD_DEFINITION
+directive @rules(apply: [String!]!) on FIELD_DEFINITION | INPUT_FIELD_DEFINITION
+directive @validate(validator: String, rules: [String]) on ARGUMENT_DEFINITION | FIELD_DEFINITION | INPUT_FIELD_DEFINITION
+
+directive @create(model: String!, flatten: Boolean) on FIELD_DEFINITION
+directive @update(model: String!, flatten: Boolean) on FIELD_DEFINITION
+directive @delete(model: String!, flatten: Boolean) on FIELD_DEFINITION
+
+directive @hasMany(type: String, relation: String, model: String, scopes: [String]) on FIELD_DEFINITION
+directive @belongsTo(relation: String) on FIELD_DEFINITION
+directive @hasOne(relation: String) on FIELD_DEFINITION
+directive @lazyLoad(relations: [String!]!) on FIELD_DEFINITION
+
+directive @middleware(checks: [String!]!) on FIELD_DEFINITION
+
+directive @cache(private: Boolean, maxAge: Int) on FIELD_DEFINITION
+
+# Argument directives
+directive @eq(key: String) on ARGUMENT_DEFINITION
+directive @neq(key: String) on ARGUMENT_DEFINITION
+directive @in(key: String) on ARGUMENT_DEFINITION
+directive @where(operator: String!, clause: String, key: String) on ARGUMENT_DEFINITION
+
+# spread
+directive @spread on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
+
+# guard
+directive @guard(
+    """
+    Specify which guards to use, e.g. ["api"].
+    When not defined, the default from `lighthouse.php` is used.
+    """
+    with: [String!]
+) on FIELD_DEFINITION | OBJECT
