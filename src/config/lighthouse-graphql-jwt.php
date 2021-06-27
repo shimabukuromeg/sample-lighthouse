@@ -20,6 +20,6 @@ return [
     |
     */
     'verify_email' => [
-        'base_url' => env('APP_URL').'/email-verify',
+        'base_url' => config('app.front_url') . '/email-verify',
     ],
 ];
