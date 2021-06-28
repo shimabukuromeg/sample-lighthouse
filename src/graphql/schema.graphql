@@ -27,9 +27,13 @@ type Query {
 }
 
 type Mutation {
-    createUser(email: String @rules(apply: ["email"])): User
+    createUser(
+        name: String!
+        email: String! @rules(apply: ["email"])
+        password: String!
+    ): User! @create
     updateUser(
         id: ID!
         name: String
-    ): User @update(model: "App\\Models\\User")
+    ): User @update
 }
