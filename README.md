@@ -31,7 +31,20 @@ $ make app-clear
 ```
 
 データ追加
-```
+```shell
 $ docker-compose exec app php artisan tinker
 $ \App\Models\User::factory(10)->create()
 ```
+
+```shell
+# Create IDE helper files to improve type checking and autocompletion.
+$ docker-compose exec app php artisan lighthouse:ide-helper
+
+# ide-helper command generating broken schema-directives.graphql file #1661
+$ sed -i '' 's/repeatable//g' src/schema-directives.graphql
+```
+
+# ref
+Artisan Commands
+
+[Artisan Commands \| Lighthouse](https://lighthouse-php.com/4/api-reference/commands.html#cache)

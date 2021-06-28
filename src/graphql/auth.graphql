@@ -4,6 +4,7 @@ type User {
     email: String!
     created_at: DateTime!
     updated_at: DateTime!
+    posts: [Post!]! @hasMany
 }
 
 type AuthPayload {
@@ -78,7 +79,7 @@ input UpdatePassword {
     password_confirmation: String!
 }
 
-type Mutation {
+extend type Mutation {
     login(input: LoginInput @spread): AuthPayload! @field(resolver: "Wimil\\LighthouseGraphqlJwtAuth\\GraphQL\\Mutations\\Login@resolve")
     refreshToken: RefreshTokenPayload! @field(resolver: "Wimil\\LighthouseGraphqlJwtAuth\\GraphQL\\Mutations\\RefreshToken@resolve")
     logout: LogoutResponse! @field(resolver: "Wimil\\LighthouseGraphqlJwtAuth\\GraphQL\\Mutations\\Logout@resolve")
