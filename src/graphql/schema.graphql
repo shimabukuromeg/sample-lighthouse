@@ -26,6 +26,23 @@ type Query {
     post(id: Int! @eq): Post @find
 }
 
+input CreateUserInput {
+    name: String!
+    email: String!
+    password: String!
+}
+
+input CreateUserBelongsTo {
+    connect: ID
+    create: CreateUserInput
+}
+
+input CreatePostInput {
+    title: String!
+    content: String!
+    author: CreateUserBelongsTo
+}
+
 type Mutation {
     createUser(
         name: String!
@@ -36,4 +53,5 @@ type Mutation {
         id: ID!
         name: String
     ): User @update
+    createPost(input: CreatePostInput! @spread): Post @create
 }
