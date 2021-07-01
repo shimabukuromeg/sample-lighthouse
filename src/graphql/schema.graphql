@@ -43,6 +43,27 @@ input CreatePostInput {
     author: CreateUserBelongsTo
 }
 
+input UpdatePostInput {
+    id: ID!
+    title: String
+    author: UpdateUserBelongsTo
+}
+
+input UpdateUserInput {
+    id: ID!
+    name: String
+    email: String
+    password: String
+}
+
+input UpdateUserBelongsTo {
+    connect: ID
+    create: CreateUserInput
+    disconnect: Boolean
+    delete: Boolean
+    update: UpdateUserInput
+}
+
 type Mutation {
     createUser(
         name: String!
@@ -54,4 +75,5 @@ type Mutation {
         name: String
     ): User @update
     createPost(input: CreatePostInput! @spread): Post @create
+    updatePost(input: UpdatePostInput! @spread): Post @update
 }
