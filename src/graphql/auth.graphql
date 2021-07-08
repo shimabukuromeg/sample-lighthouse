@@ -81,11 +81,13 @@ input UpdatePassword {
 
 extend type Mutation {
     login(input: LoginInput @spread): AuthPayload! @field(resolver: "Wimil\\LighthouseGraphqlJwtAuth\\GraphQL\\Mutations\\Login@resolve")
+    adminUserLogin(input: LoginInput @spread): AuthPayload! @field(resolver: "App\\GraphQL\\Mutations\\Login@resolve")
     refreshToken: RefreshTokenPayload! @field(resolver: "Wimil\\LighthouseGraphqlJwtAuth\\GraphQL\\Mutations\\RefreshToken@resolve")
     logout: LogoutResponse! @field(resolver: "Wimil\\LighthouseGraphqlJwtAuth\\GraphQL\\Mutations\\Logout@resolve")
     forgotPassword(input: ForgotPasswordInput! @spread): ForgotPasswordResponse! @field(resolver: "Wimil\\LighthouseGraphqlJwtAuth\\GraphQL\\Mutations\\ForgotPassword@resolve")
     resetPassword(input: ResetPasswordInput @spread): ForgotPasswordResponse! @field(resolver: "Wimil\\LighthouseGraphqlJwtAuth\\GraphQL\\Mutations\\ResetPassword@resolve")
     register(input: RegisterInput @spread): RegisterResponse! @field(resolver: "Wimil\\LighthouseGraphqlJwtAuth\\GraphQL\\Mutations\\Register@resolve")
+    adminUserRegister(input: RegisterInput @spread): RegisterResponse! @field(resolver: "App\\GraphQL\\Mutations\\Register@resolve")
     verifyEmail(input: VerifyEmailInput! @spread): AuthPayload! @field(resolver: "Wimil\\LighthouseGraphqlJwtAuth\\GraphQL\\Mutations\\VerifyEmail@resolve")
     updatePassword(input: UpdatePassword! @spread): UpdatePasswordResponse! @field(resolver: "Wimil\\LighthouseGraphqlJwtAuth\\GraphQL\\Mutations\\UpdatePassword@resolve") @guard(with: ["api"])
 }
