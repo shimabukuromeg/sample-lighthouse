@@ -24,7 +24,7 @@ class PointFactory extends Factory
         return [
             'point' => $this->faker->randomNumber(),
             'price' => $this->faker->randomNumber(),
-            'stripe_product_id' => $this->faker->md5,
+            'stripe_product_id' => 'prod_JpE2H7dCwFys7h',
         ];
     }
 }
