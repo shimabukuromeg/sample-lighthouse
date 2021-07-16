@@ -27,6 +27,8 @@ class CreatePaymentCheckoutsTable extends Migration
             $table->foreign('point_id')->references('id')->on('points');
             $table->unique('stripe_session_id');
             $table->unique('stripe_payment_intent_id');
+
+            $table->softDeletes();
         });
     }
 
