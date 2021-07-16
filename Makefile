@@ -65,6 +65,4 @@ app-ide-helper:
 
 # DBをリフレッシュしてSeederを流す、testingにはSeederは流さない
 app-db-fresh-seed:
-	docker-compose exec app ash -c ' \
-		php artisan migrate:fresh --seed && \
-		php artisan migrate:fresh --env=testing'
+	docker-compose exec app php artisan migrate:fresh --seed
