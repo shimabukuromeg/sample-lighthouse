@@ -30,7 +30,7 @@ $ make app-init
 $ make app-clear
 ```
 
-データ追加
+サンプル データ追加
 ```shell
 $ docker-compose exec app php artisan tinker
 $ \App\Models\User::factory(10)->create()
@@ -42,6 +42,11 @@ $ docker-compose exec app php artisan lighthouse:ide-helper
 
 # ide-helper command generating broken schema-directives.graphql file #1661
 $ sed -i '' 's/repeatable//g' src/schema-directives.graphql
+```
+
+モデル作成
+```shell
+$ docker-compose exec app php artisan make:model {ModelName} -mf
 ```
 
 # ref
