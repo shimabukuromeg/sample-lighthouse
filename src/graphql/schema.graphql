@@ -63,11 +63,23 @@ type Point {
     updated_at: DateTime!
 }
 
+input PaymentCheckoutSessionStartInput {
+    point_id: Int!
+}
+
+type PaymentCheckoutSessionStart {
+    stripe_session_id: String!
+}
+
 type Mutation {
     createUser(input: CreateUserInput! @spread): User! @create
     updateUser(id: ID! name: String): User @update
     createPost(input: CreatePostInput! @spread): Post @create
     updatePost(input: UpdatePostInput! @spread): Post @update
+    """
+    Stripe CheckOut の決済を始める
+    """
+    paymentCheckoutSessionStart(input: PaymentCheckoutSessionStartInput! @spread): PaymentCheckoutSessionStart @field(resolver: "PaymentCheckoutSessionStartResolver")
 }
 
 type Query {

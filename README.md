@@ -49,6 +49,11 @@ $ sed -i '' 's/repeatable//g' src/schema-directives.graphql
 $ docker-compose exec app php artisan make:model {ModelName} -mf
 ```
 
+リゾルバ作成
+```shell
+$ docker-compose exec app php artisan lighthouse:mutation {ResolverName}Resolver
+```
+
 # ref
 Artisan Commands
 
