@@ -17,6 +17,7 @@ class CreatePointsTable extends Migration
             $table->id();
             $table->integer('point');
             $table->integer('price');
+            $table->string('stripe_product_id');
             $table->timestamps();
         });
     }

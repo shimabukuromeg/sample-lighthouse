@@ -15,5 +15,6 @@ class Point extends Model
     protected $fillable = [
         'point',
         'price',
+        'stripe_product_id',
     ];
 }
