@@ -30,4 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'stripe' => [
+        'mock' => env('STRIPE_MOCK', false),
+        'public_key' => env('STRIPE_API_PUBLIC_KEY'),
+        'key' => env('STRIPE_API_KEY'),
+        'webhook_secret' => env('STRIPE_WEBHOOK_SECRET'),
+    ],
 ];
