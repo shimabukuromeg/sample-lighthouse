@@ -79,7 +79,7 @@ type Mutation {
     """
     Stripe CheckOut の決済を始める
     """
-    paymentCheckoutSessionStart(input: PaymentCheckoutSessionStartInput! @spread): PaymentCheckoutSessionStart @field(resolver: "PaymentCheckoutSessionStartResolver")
+    paymentCheckoutSessionStart(input: PaymentCheckoutSessionStartInput! @spread): PaymentCheckoutSessionStart @field(resolver: "PaymentCheckoutSessionStartResolver") @guard
 }
 
 type Query {
