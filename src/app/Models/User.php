@@ -88,4 +88,9 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     {
         return $this->hasMany(Post::class, 'author_id');
     }
+
+    public function paymentCheckouts(): HasMany
+    {
+        return $this->hasMany(PaymentCheckout::class);
+    }
 }
