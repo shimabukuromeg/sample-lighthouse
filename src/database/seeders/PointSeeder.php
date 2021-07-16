@@ -14,7 +14,6 @@ class PointSeeder extends Seeder
      */
     public function run()
     {
-        Point::truncate();
         for ($i = 1; $i < 5; $i++) {
             Point::factory()->create([
                 'point' => $i * 1000,

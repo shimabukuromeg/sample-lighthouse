@@ -15,7 +15,6 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        Post::truncate();
         foreach (User::all() as $user) {
             \App\Models\Post::factory()->count(3)->create(['author_id' => $user->id]);
         }
