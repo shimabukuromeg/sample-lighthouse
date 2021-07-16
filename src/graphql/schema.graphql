@@ -55,6 +55,14 @@ input UpdateUserBelongsTo {
     update: UpdateUserInput
 }
 
+type Point {
+    id: ID!
+    price: Int!
+    point: Int!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
 type Mutation {
     createUser(input: CreateUserInput! @spread): User! @create
     updateUser(id: ID! name: String): User @update
@@ -68,4 +76,5 @@ type Query {
     me: User! @auth
     posts: [Post!]! @paginate @guard(with: ["user"])
     post(id: Int! @eq): Post @find
+    points: [Point!]! @guard @all
 }
