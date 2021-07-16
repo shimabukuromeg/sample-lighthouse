@@ -54,6 +54,10 @@ $ docker-compose exec app php artisan make:model {ModelName} -mf
 $ docker-compose exec app php artisan lighthouse:mutation {ResolverName}Resolver
 ```
 
+パッケージ導入
+```shell
+$	docker-compose exec app composer require stripe/stripe-php
+```
 # ref
 Artisan Commands
 
